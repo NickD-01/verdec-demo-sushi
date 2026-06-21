@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("OWNER")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  sortOrder Int       @default(0)
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Sauce {
+  id          String         @id @default(cuid())
+  name        String
+  slug        String         @unique
+  description String?
+  kind        String         @default("SAUCE") // SAUCE | SEASONING
+  icon        String?        // emoji for compact UI, e.g. 🧂
+  extraPrice  Float          @default(0.5)
+  imageUrl    String
+  available   Boolean        @default(true)
+  sortOrder   Int            @default(0)
+  products    ProductSauce[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model Product {
+  id                       String         @id @default(cuid())
+  name                     String
+  description              String
+  price                    Float
+  imageUrl                 String
+  available                Boolean        @default(true)
+  popular                  Boolean        @default(false)
+  allowsSauceCustomization Boolean        @default(false)
+  categoryId               String
+  category                 Category       @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  sauces                   ProductSauce[]
+  orderItems               OrderItem[]
+  createdAt                DateTime       @default(now())
+  updatedAt                DateTime       @updatedAt
+}
+
+model ProductSauce {
+  productId String
+  sauceId   String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  sauce     Sauce   @relation(fields: [sauceId], references: [id], onDelete: Cascade)
+
+  @@id([productId, sauceId])
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  orderNumber   String      @unique
+  customerName  String
+  customerPhone String
+  pickupTime    String
+  pickupSlot    String?
+  notes         String?
+  status        String      @default("PENDING")
+  total         Float
+  paymentMethod String      @default("CASH") // CASH | ONLINE
+  paymentStatus String      @default("UNPAID") // UNPAID | PAID
+  molliePaymentId String?   // referentie naar de Mollie-betaling (productie)
+  items         OrderItem[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int
+  price     Float
+  name      String
+  options   String?
+}
+
+model Settings {
+  id                  String   @id @default("default")
+  restaurantName      String   @default("Frituur De Gouden Friet")
+  phone               String   @default("+32 3 123 45 67")
+  address             String   @default("Grote Markt 12, 2000 Antwerpen")
+  openingHours        String   @default("Mon-Sun: 11:00 - 22:00")
+  tagline             String   @default("Fresh Belgian Fries, Ready Fast")
+  minLeadTimeMinutes  Int      @default(30)
+  slotIntervalMinutes Int      @default(15)
+  maxOrdersPerSlot    Int      @default(8)
+  openTime            String   @default("11:00")
+  closeTime           String   @default("22:00")
+  updatedAt           DateTime @updatedAt
+}
