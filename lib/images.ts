@@ -5,15 +5,15 @@ export const PLACEHOLDER_IMAGE = "/images/placeholder-food.svg";
 
 export const FOOD_IMAGES = {
   // Sushi sets
-  salmonSet:       u("photo-1617196034183-421b4040d20d"),
-  rainbowRoll:     u("photo-1579871494447-9811cf80d66c"),
-  californiaRoll:  u("photo-1611143669185-af224c5e3252"),
-  tunaRoll:        u("photo-1617196034099-5658d24f0c51"),
-  veggiRoll:       u("photo-1562802378-063ec186a863"),
+  salmonSet:       u("photo-1579871494447-9811cf80d66c"),
+  rainbowRoll:     u("photo-1562802378-063ec186a863"),
+  californiaRoll:  u("photo-1559410545-0bdcd187e0a6"),
+  tunaRoll:        u("photo-1569050467447-ce54b3bbc37d"),
+  veggiRoll:       u("photo-1534482421-64566f976cfa"),
 
   // Nigiri & warm
-  salmonNigiri:    u("photo-1617196034100-a4823ef32d12"),
-  tunaNigiri:      u("photo-1617196034223-6eb43bc98f2d"),
+  salmonNigiri:    u("photo-1553621042-f6e147245754"),
+  tunaNigiri:      u("photo-1574781330855-d0db8cc6a79c"),
   gyoza:           u("photo-1496116218417-1a781b1c416c"),
   edamame:         u("photo-1618449840665-9f3a3e56d0a5"),
   misoSoep:        u("photo-1547592180-85f173990554"),
