@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, ShoppingBag, X, UtensilsCrossed } from "lucide-react";
+import { Menu, ShoppingBag, X, Fish } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -24,11 +24,11 @@ export function CustomerHeader({ restaurantName }: { restaurantName: string }) {
     <>
       <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto flex h-14 items-center justify-between px-4 sm:h-16">
-          <Link href="/" className="flex min-w-0 items-center gap-2 font-bold">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-verdec-yellow text-verdec-black">
-              <UtensilsCrossed className="h-5 w-5" />
+          <Link href="/" className="flex min-w-0 items-center gap-2.5 font-bold">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center bg-verdec-yellow text-white">
+              <Fish className="h-5 w-5" />
             </div>
-            <span className="truncate text-sm sm:text-base">{restaurantName}</span>
+            <span className="truncate font-display text-base tracking-wide sm:text-lg">{restaurantName}</span>
           </Link>
 
           <nav className="hidden items-center gap-6 md:flex">

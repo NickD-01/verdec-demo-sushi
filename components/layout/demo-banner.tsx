@@ -6,7 +6,7 @@ export function DemoBanner() {
     <div className="border-b border-verdec-yellow/30 bg-verdec-yellow/10 px-4 py-2 text-center text-sm">
       <span className="text-muted-foreground">
         Verdec Afhaalplatform —{" "}
-        <strong className="text-foreground">demo & verkoopklare</strong> MVP voor Belgische frituur
+        <strong className="text-foreground">demo & verkoopklare</strong> MVP voor afhaalzaken
       </span>
       <Link
         href="/admin/login"

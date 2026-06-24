@@ -39,14 +39,11 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // TODO: pas merkkleur aan voor de klant.
-        // yellow = primaire accentkleur (knop, badge, hover)
-        // black  = donkere achtergrond (hero, header)
-        // dark   = secundaire donkere tint
+        // Sushi-identiteit: vermiljoen accent op diep inkt-groen.
         verdec: {
-          yellow: "#F5C518", // TODO → bv. "#C41E3A" voor rood of "#2E7D32" voor groen
-          black:  "#0A0A0A",
-          dark:   "#1A1A1A",
+          yellow: "#E0533D", // accent (vermiljoen)
+          black:  "#12201E", // diep inkt-groen
+          dark:   "#1C2C29",
         },
       },
       borderRadius: {
@@ -55,7 +52,8 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
       },
     },
   },
